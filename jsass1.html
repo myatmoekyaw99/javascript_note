@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment2</title>
+    </head>
+    <body>
+        <label >Enter first Number :</label>
+        <input type="number" id="in1">
+         <br>
+        <label >Enter second Number :</label>
+        <input type="number" id="in2">
+        <br>
+        <button type="submit" onclick="add()">+</button>
+        <button type="submit" onclick="sub()">-</button>
+        <button type="submit" onclick="mult()">*</button>
+        <button type="submit" onclick="div()">/</button>
+        <p id="result"></p>
+
+        <script>
+             function add(){        
+                var x=parseInt(document.getElementById("in1").value);
+                var y=parseInt(document.getElementById("in2").value);
+                var res=x+y;
+                document.getElementById("result").innerHTML=res; 
+            }
+            function sub(){        
+                var x=parseInt(document.getElementById("in1").value);
+                var y=parseInt(document.getElementById("in2").value);
+                var res=x-y;
+                document.getElementById("result").innerHTML=res; 
+            }
+            function mult(){        
+                var x=parseInt(document.getElementById("in1").value);
+                var y=parseInt(document.getElementById("in2").value);
+                var res=x*y;
+                document.getElementById("result").innerHTML=res; 
+            }
+            function div(){        
+                var x=parseInt(document.getElementById("in1").value);
+                var y=parseInt(document.getElementById("in2").value);
+                var res=x/y;
+                document.getElementById("result").innerHTML=res; 
+            }
+        </script>
+    </body>
+</html>

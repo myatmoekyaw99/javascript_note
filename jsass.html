@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment1</title>
+    </head>
+    <body>
+        <label >Enter first Number :</label>
+        <input type="number" id="in1">
+         <br>
+        <label >Enter second Number :</label>
+        <input type="number" id="in2">
+        <br>
+        <button type="button" id="but" onClick="divideBy()">Show result</button>
+        <p id="result"></p>
+
+        <script>
+            var ar=[];
+            function divideBy(){
+                    var x=parseInt(document.getElementById("in1").value);
+                    var y=parseInt(document.getElementById("in2").value);
+                for(var i=x;i <=y ; i++)
+                {
+                    var result=i%2;
+                    var res=i%5;
+                    if(result == 0 && res==0){
+                        ar.push(i);
+                    }
+                }
+                document.getElementById("result").innerHTML+=ar; 
+            }
+        </script>
+    </body>
+</html>

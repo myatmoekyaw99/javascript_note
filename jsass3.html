@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment4</title>
+    </head>
+    <body>
+        <label >Enter first Number :</label>
+        <input type="number" id="in1">
+         <br>
+        <label >Enter second Number :</label>
+        <input type="number" id="in2">
+        <br>
+        <button type="submit" onclick="check()">Check</button>
+        
+        <p id="result"></p>
+        <p id="result1"></p>
+
+        <script>
+            function check()
+            {
+            var x=parseInt(document.getElementById("in1").value);
+            var y=parseInt(document.getElementById("in2").value);
+            var ar=[];
+            var ar1=[];
+            for(var i=x;i <=y ; i++)
+            {
+                if(i===0){
+                   document.getElementById("result").innerHTML+=i +" " + "is even" + "<br>";
+               }
+               else if(i%2===0){
+                   document.getElementById("result").innerHTML+=i + " " + "is even" + "<br>";
+               }
+               else{
+                   document.getElementById("result").innerHTML+=i + " " + "is odd" + "<br>";
+               }
+                }
+            }
+        </script>
+    </body>
+</html>

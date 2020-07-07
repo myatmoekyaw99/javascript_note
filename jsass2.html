@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment3</title>
+    </head>
+    <body>
+        <label >Enter date :</label>
+        <input type="date" id="in1">
+         
+        <button type="button" id="but" onClick="check()">Check</button>
+
+        <script>
+            function check(){
+
+                var setDate=document.getElementById("in1").value;
+                var setD=new Date(setDate);
+                var setD1=setD.getFullYear();
+                
+                var d=new Date();
+                var today=d.getFullYear();
+
+                var dif=today-setD1;
+
+                if(dif>18){
+                    alert("Your age is over 18!");
+                }else{
+                    alert("Your age is under 18!");
+                }
+            }
+           
+            
+        </script>
+    </body>
+</html>
