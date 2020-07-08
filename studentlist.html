@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student List</title>
+        <style>
+        body{
+            margin:0px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            padding: 3px;
+        }
+        .left{
+            width: 50%;
+            height: 350px;
+            float: left;
+            background-color: rgb(240, 230, 230);
+        }
+        .right{
+            width: 50%;
+            height: 350px;
+            float: right;
+            background-color: rgb(240, 230, 230);
+        }
+        input{
+            border: 2px solid gainsboro;
+        }
+        .in{
+            padding: 10px;
+        }
+        .in > input{
+            width: 350px;
+            height: 30px;
+        }
+        label{
+            color: blue;
+        }
+        #addr{
+            border: 2px solid gainsboro;
+        }
+        .radi{
+            text-align: center;
+        }
+        .check{
+            text-align: center;
+        }
+        .btn{
+            text-align: left;
+            margin-top: 10px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #81ca83;
+        }
+        button:hover {
+            background-color: #81ca83;
+            color: white;
+        }
+        #table{
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgb(139, 7, 7);
+            background-color: grey;
+            color: rgb(204, 218, 11);
+        }
+        input[type="button"]{
+            padding: 5px;
+            border-radius: 5px;
+            width: 80px;
+            box-shadow: 2px solid black;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <from>
+                <div class="left">
+                    <div class="in">
+                    <label for="name">Name :</label>
+                    <input type="text" id="name" name="uname" placeholder="Your name.."><br><br>
+                    <br><label for="pho">Phone :</label>
+                    <input type="phone" id="pho" name="uphone" placeholder="Phone No.."><br><br>
+                    <br><label for="mail">E-mail :</label>
+                    <input type="email" id="mail" name="umail" placeholder="E-mail.."><br><br>
+                    </div>
+                    <input type="button" value="clear" onclick="reset();">
+                </div>
+
+                <div class="right">
+                    <label for="addr">Address :</label>
+                    <textarea id="addr" name="add" placeholder="Address...."
+                    style="height:50px;width: 90%;"></textarea><br><br>
+
+                <div class="radi">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label><br><br>
+                </div>
+                <div class="check">
+                    <input type="checkbox" id="sub1" name="c" value="501">
+                    <label for="c1">501</label>
+                    <input type="checkbox" id="sub2" name="c" value="502">
+                    <label for="c2">502</label>
+                    <input type="checkbox" id="sub3" name="c" value="503">
+                    <label for="c3">503</label><br><br>
+                </div>
+                <div class="btn">
+                    <button type="submit" onclick="add()">Submit</button>
+                </div>
+                </div>
+            </from>
+            <table id="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Subject</th>
+                </thead>
+            </table>
+        </div>
+        <script>
+        
+            function add(){
+                var n=document.getElementById("name");
+                var p=document.getElementById("pho");
+                var m=document.getElementById("mail");
+                var a=document.getElementById("addr");
+                var c=document.getElementsByName("c");
+                /*var ch1=document.getElementsByName("sub1");
+                var ch2=document.getElementsByName("sub2");
+                var ch3=document.getElementsByName("sub3");*/
+                var g=document.getElementsByName("gender");
+
+                var nv=n.value;
+                var pv=p.value;
+                var mv=m.value;
+                var av=a.value;
+
+                var radiov="";
+                for( var i = 0; i < g.length; i++) { 
+                    if(g[i].checked) 
+                    radiov+=g[i].value+"\ "; 
+                } 
+
+                var cc="";
+                for( var i = 0; i < c.length; i++) { 
+                    if(c[i].checked){
+                    cc+=c[i].value+"\ "; 
+                    }
+                } 
+
+                var tab=document.getElementById("table");
+                var row=document.createElement("tr");
+                var d1=document.createElement("td");
+                var d2=document.createElement("td");
+                var d3=document.createElement("td");
+                var d4=document.createElement("td");
+                var d5=document.createElement("td");
+                var d6=document.createElement("td");
+
+                tab.appendChild(row);
+                row.appendChild(d1);
+                row.appendChild(d2);
+                row.appendChild(d3);
+                row.appendChild(d4);
+                row.appendChild(d5);
+                row.appendChild(d6);
+
+                
+                var name=document.createTextNode(nv);
+                var phone=document.createTextNode(pv);
+                var address=document.createTextNode(av);
+                var email=document.createTextNode(mv);
+                var radio=document.createTextNode(radiov);
+                var checkbox=document.createTextNode(cc);
+
+                d1.appendChild(name);
+                d2.appendChild(phone);
+                d3.appendChild(email);
+                d4.appendChild(address);
+                d5.appendChild(radio);
+                d6.appendChild(checkbox);      
+            }
+            function reset(){
+                document.getElementById("name").value="";
+                document.getElementById("pho").value="";
+                document.getElementById("mail").value="";
+                document.getElementById("addr").value="";
+                document.getElementById("male").checked=false;
+                document.getElementById("female").checked=false;
+                document.getElementById("sub1").checked=false;
+                document.getElementById("sub2").checked=false;
+                document.getElementById("sub3").checked=false;
+            }
+        </script>
+    </body>
+</html>
