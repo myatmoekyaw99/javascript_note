@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function palindrome(str) {
+  const nstr = str.split(/\W|_|\s/).join("").toLowerCase();
+  if(nstr % 2 === 0){
+    const fst = nstr.slice(0,nstr.length/2).split("");
+    const lst = nstr.slice(nstr.length/2,nstr.length).split("").toReversed();
+     return fst.every(item => lst.indexOf(item) === fst.indexOf(item));
+  }else{
+    const fst = nstr.slice(0,nstr.length/2 + 1).split("");
+    const lst = nstr.slice(nstr.length/2,nstr.length).split("").toReversed();
+     return fst.every(item => lst.indexOf(item) === fst.indexOf(item));
+  } 
+}
+
+console.log(palindrome("0_0 (: /-\ :) 0-0"));
+
+//number to roman numeral
+
+function convertToRoman(num) {
+ const lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+ let roman = '';
+ for(let i in lookup){
+   if(isNaN(num)){
+     return "enter valid number";
+   }
+   while(num >= lookup[i]){
+     roman += i;
+     num -= lookup[i];
+   }
+ }
+
+ return roman;
+}
+
+console.log(convertToRoman(90));
+
+//alphabet to ciesar cipher
+
+function rot13(str) {
+  let nst = str.split("").map(char=> {
+    if(char.charCodeAt() > 64){
+        return String.fromCharCode(char.charCodeAt(0) + (char.toLowerCase() <= 'm' ? 13 : -13));
+    }else{
+      return String.fromCharCode(char.charCodeAt(0));
+    }
+  });
+   return nst.join("");
+    // console.log(char.charCodeAt());
+}
+
+console.log(rot13("SERR PBQR PNZC"));
+
+
+//US telephone number check
+function telephoneCheck(str) {
+  let reg = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/;
+  let nst = reg.test(str);
+  // console.log(nst);
+  return nst;
+}
+
+console.log(telephoneCheck("555-555-5555"));
+
+//Cash register
+
+function checkCashRegister(price, cash, cid) {
+  let arrCurrency = [
+    ["ONE HUNDRED", 100], 
+    ["TWENTY", 20], 
+    ["TEN", 10], 
+    ["FIVE", 5], 
+    ["ONE", 1], 
+    ["QUARTER", 0.25],
+    ["DIME", 0.1],
+    ["NICKEL", 0.05],
+    ["PENNY", 0.01]
+    ];
+
+  let diff = cash - price;
+  const orgdiff = diff;
+  cid.reverse();
+  let cidsum = 0;
+  for(let i=0; i < cid.length; i++){  
+    cidsum += cid[i][1];
+  }
+
+  const result = [...arrCurrency];
+  for(let i=0; i< result.length ; i++){
+    let bill = cid[i][1]/arrCurrency[i][1];
+    let returnAmt = 0;
+    bill.toFixed(2);
+    while(diff.toFixed(2) >= arrCurrency[i][1] && bill >=1){
+        diff -= arrCurrency[i][1] ;
+        returnAmt += arrCurrency[i][1];
+        bill--;
+    }
+  
+    if(returnAmt > 0){
+      if(returnAmt - Math.floor(returnAmt) !== 0){
+        result[i][1] = returnAmt.toFixed(2);
+        result[i][1] = parseFloat(result[i][1]);
+        // console.log(result[i][1]);
+      }else{
+        result[i][1] = returnAmt;
+      }
+    }else{
+        result[i][1] = returnAmt;
+    }
+  }
+  let sumresult = 0;
+  for(let i=0; i < cid.length; i++){  
+    sumresult += result[i][1];
+  }
+ cid.reverse();
+//  console.log(orgdiff)
+ if(cidsum < orgdiff || sumresult < orgdiff){
+   return {status: "INSUFFICIENT_FUNDS", change: []};
+ }else if(cidsum == orgdiff){
+   return {status: "CLOSED", change: cid}
+ }else{
+  let finalResult =[];
+  for(let i = 0; i<result.length; i++){
+    if(result[i][1]!==0){
+      finalResult.push(result[i]);  
+    } 
+  }
+  return {status: "OPEN", change: [...finalResult]}
+ }
+
+  
+}
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) );
+
+//checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
+
+</script>
+</html>
